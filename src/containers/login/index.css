@@ -22,37 +22,20 @@
         margin:  5vh;
     }
 }
-
-.login-picture{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: 5s;
-    margin: 10px;
-}
-.login-picture > * {
-    margin: 5px;
-}
 /* grid system */
 .grid-col-2-sym {
     display: grid;
     grid-template-columns: 1fr 1fr;
     /* background-color: aqua; */
 }
-/* Logo */
-.app-logo {
-    height: 39vh;
-    pointer-events: none;
-    border-radius: 50%;
-}
+/* app-logo-spin */
+
 /* login form */
-.page-button{
-    margin-top: 30px;
-}
+
 .login-button{
     display: flex;
     justify-content: end;
+    margin-top: 30px;
 }
 .ant-form-item {
     margin-bottom: 15px;
@@ -78,13 +61,4 @@
     }
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
 

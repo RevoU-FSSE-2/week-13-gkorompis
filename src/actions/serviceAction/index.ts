@@ -1,5 +1,7 @@
 
 import { Dispatch } from 'redux';
+import axios from 'axios';
+import { serialize } from 'v8';
 /************************************* TYPING */ 
 /************************************* VARIABLES */ 
 const actionTypes = {
@@ -59,6 +61,19 @@ const dataDummy = `[
         "updatedTime": "2023-09-01T19:55:15.709Z"
     }
 ]`
+/************************************* VARIABLES */ 
+const fetchServiceState = async()=>{
+
+    const token = localStorage.getItem('token');
+    if(!token){
+        alert('no token')
+    }
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    const data = await axios.get('https://gedldowmye.execute-api.ap-southeast-3.amazonaws.com/prod/services');
+    const serviceState = data["data"];
+    console.log("fetched ServiceState", {fetched: fetchServiceState});
+    return serviceState;
+}
 /************************************* EXPORTS */ 
 const serviceAction = () =>async(dispatch:Dispatch) =>{
     try {
@@ -69,7 +84,8 @@ const serviceAction = () =>async(dispatch:Dispatch) =>{
         dispatch({type: actionTypes.loading});
         
         //fetch data
-        dispatch({type: actionTypes.success, payload: JSON.parse(dataDummy)});
+        const serviceState = await fetchServiceState();
+        dispatch({type: actionTypes.success, payload: serviceState});
 
     } catch (error) {
         const errorMessage = {code: 403, message: error};

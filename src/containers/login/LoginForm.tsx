@@ -6,6 +6,7 @@ import {Field, ErrorMessage, FieldProps} from 'formik';
 import {Input, Form as AntdForm, DatePicker as AntDatePicker} from 'antd';
 import { Button} from "@mui/material";
 import { useNavigate, NavigateFunction } from "react-router-dom";
+import axios from 'axios';
 
 /* ------------------------------ INTERFACES */
 interface FormValues {
@@ -35,8 +36,16 @@ const validationSchema = Yup.object({
 const signUpHandler = (navigate:NavigateFunction) =>{
     navigate('/register');
 };
+
+const createSession = (inputToken:string) =>{
+
+    localStorage.setItem('token', inputToken);
+    
+    console.log("session is created token: ",localStorage.getItem('token'));
+}
 const fieldNames = ["username", "password"];
 const fieldLabels = ["Username", "Password"]
+const url = 'https://gedldowmye.execute-api.ap-southeast-3.amazonaws.com/prod/auth/login'
 /* ------------------------------ COMPONENT */
 const LoginForm = ({handlerFormValues}:MultiStepFormProps) =>{
 
@@ -44,9 +53,13 @@ const LoginForm = ({handlerFormValues}:MultiStepFormProps) =>{
     
 
     const navigate = useNavigate();
-    const onSubmitFormik = (values:FormValues) => {
+    const onSubmitFormik =async(values:FormValues) => {
         console.log("onSubmit", values);
-        handlerFormValues(values)
+        handlerFormValues(values);
+        const response = await axios.post(url, values);
+        const {data} = response;
+        console.log("response axios post", response)
+        createSession(data);
         navigate('/home');
     };
     

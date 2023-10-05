@@ -7,7 +7,7 @@ import { Banner } from '../../components';
 const Register = () => {
   return (
     <>
-      <Banner/>
+      {/* <Banner/> */}
       <RegisterPage/>
     </>
   );

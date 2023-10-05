@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { serviceAction } from '../../actions';
 import { AnyAction } from '@reduxjs/toolkit';
 import ServiceContainer from './ServiceContainer';
+import axios from 'axios';
 
 /************************************* TYPING */ 
 interface Error {
@@ -25,7 +26,6 @@ interface ServiceState {
 interface Stores {
   services: ServiceState
 }
-
 /************************************* COMPONENT */ 
 
 const ServicePage = () => {
@@ -36,7 +36,7 @@ const ServicePage = () => {
 
   useEffect(()=>{
     dispatch(serviceAction() as unknown as AnyAction);
-    console.log("### serviceState", {serviceState});
+    // console.log("### serviceState", {serviceState});
   }, [dispatch]);
   return (
     <div className="service-page page">

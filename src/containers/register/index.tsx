@@ -1,16 +1,11 @@
 
+import { AppLogoSpin } from "../../components";
 import "./index.css"
-import RegisterForm from "./LoginForm";
-import { useState } from 'react';
+import RegisterForm from "./RegisterForm";
 /************************************* TYPING */ 
-interface FormValues {
-    username: string,
-    password: string
-}
 /************************************* COMPONENT */ 
 
 const RegisterPage = () => {
-  let [formValues, setFormValues] = useState<FormValues>({} as FormValues);
   return (
     <>
       <main className="register-main">
@@ -20,10 +15,10 @@ const RegisterPage = () => {
           <figcaption><h1>P O R T A L</h1></figcaption>
         </picture>  */}
         <div className="register-form">
+            {/* <AppLogoSpin height="10vh"/> */}
             <h3 style={{margin:"0px"}}>Sign In</h3>
-            <RegisterForm handlerFormValues={setFormValues}/>
+            <RegisterForm />
         </div>
-      
       </main>
     </>
   );
