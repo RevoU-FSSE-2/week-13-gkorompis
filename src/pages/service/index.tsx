@@ -9,11 +9,11 @@ const Service = () => {
       <header>
         <Navbar/>
       </header>
-      <body>
+      <main>
         {/*Banner*/}
         <Banner/>
         <ServicePage/>
-      </body> 
+      </main> 
     </>
   );
 }

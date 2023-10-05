@@ -10,11 +10,11 @@ const Home = () => {
       <header>
         <Navbar/>
       </header>
-      <body>
+      <main>
         {/*Banner*/}
         <Banner/>
         <HomePage/>
-      </body> 
+      </main> 
     </>
   );
 }

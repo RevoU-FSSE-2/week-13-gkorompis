@@ -31,7 +31,7 @@ const HomePage = () => {
 
   useEffect(()=>{
     dispatch(profileAction() as unknown as AnyAction);
-    console.log("### profileState", {profileState});
+    // console.log("### profileState", {profileState});
   }, [dispatch]);
   return (
     <div className="profile-page page">
