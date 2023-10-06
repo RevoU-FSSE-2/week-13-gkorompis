@@ -1,9 +1,7 @@
 import {Formik, Form} from 'formik';
 import * as Yup from 'yup';
-import FormItems1 from './FormItems1';
-import { useState } from 'react';
-import {Field, ErrorMessage, FieldProps} from 'formik';
-import {Input, Form as AntdForm, DatePicker as AntDatePicker} from 'antd';
+import {Field, ErrorMessage} from 'formik';
+import {Input, Form as AntdForm} from 'antd';
 import { Button} from "@mui/material";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import axios from 'axios';
@@ -15,9 +13,6 @@ interface FormValues {
 }
 interface Props {
     setIsLoading: React.Dispatch<React.SetStateAction<string>>
-}
-interface Error {
-    message: string;
 }
 interface createSessionProps {
     inputToken: string,
@@ -45,11 +40,12 @@ const createSession = ({inputToken, username}:createSessionProps) =>{
     localStorage.setItem('token', inputToken);
     localStorage.setItem('username', username);
     
-    console.log("session is created token: ",localStorage.getItem('token'));
+    console.log("session is created token: ");
 }
 const fieldNames = ["username", "password"];
 const fieldLabels = ["Username", "Password"]
 const url = 'https://gedldowmye.execute-api.ap-southeast-3.amazonaws.com/prod/auth/login'
+
 /* ------------------------------ COMPONENT */
 const LoginForm = ({setIsLoading}:Props) =>{
     const navigate = useNavigate();
@@ -66,14 +62,11 @@ const LoginForm = ({setIsLoading}:Props) =>{
             //4. navigate
             console.log("response axios post", response)
             const sessionProps = {inputToken: data, username:values.username};
-            console.log("session props", sessionProps);
             createSession(sessionProps);
             navigate('/home');
         } catch (error){
             console.log('error', error);
-            // const {message} = error as Error;
             setIsLoading("error");
-            // alert(message)
         }
     };
     return(

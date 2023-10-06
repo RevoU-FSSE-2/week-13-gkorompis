@@ -27,7 +27,7 @@ const HomePage = () => {
   const dispatch= useDispatch();
   const profile = useSelector((state:Stores)=>state.profile);
   const {loading, error, profileState} = profile;
-  console.log({loading, error, profileState});
+  // console.log({loading, error, profileState});
 
   useEffect(()=>{
     dispatch(profileAction() as unknown as AnyAction);

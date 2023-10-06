@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { serviceAction, serviceRequestAction } from '../../actions';
+import { serviceRequestAction } from '../../actions';
 import { AnyAction } from '@reduxjs/toolkit';
 import RequestContainer from './RequestContainer';
-import { CircularBasic } from '../../components';
 import { LinearProgress } from '@mui/material';
 import { useState} from 'react';
 /************************************* TYPING */ 
@@ -34,12 +33,12 @@ const RequestPage = () => {
   const dispatch= useDispatch();
   const request = useSelector((state:Stores)=>state.serviceRequests);
   const {loading, error, serviceRequestState} = request;
-  console.log({loading, error, serviceRequestState});
+  // console.log({loading, error, serviceRequestState});
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(()=>{
     dispatch(serviceRequestAction() as unknown as AnyAction);
-    console.log("isLoading request container", isLoading)
+    // console.log("isLoading request container", isLoading)
     // console.log("### serviceState", {serviceState});
   }, [dispatch, isLoading]);
   return (

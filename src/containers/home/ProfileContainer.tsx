@@ -18,14 +18,14 @@ const homeButtonHandler = ({navigate, path}: NavigateButtonHandler) =>{
 }
 /************************************* COMPONENT */ 
 const ProfileContainer = ({data}:Props) => {
-    console.log("profile state data", data);
-    console.log("### props > data", data);
+    // console.log("profile state data", data);
+    // console.log("### props > data", data);
     let user = {username: ""};
     if(data && data[0]){
-        console.log("### data exists 1")
+        // console.log("### data exists 1")
         user = data[0]
     };
-    console.log("### data exists 2")
+    // console.log("### data exists 2")
     const {username} = user;
 
     const navigate = useNavigate();

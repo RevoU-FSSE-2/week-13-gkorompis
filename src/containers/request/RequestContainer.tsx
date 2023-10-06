@@ -1,5 +1,6 @@
-import { PlusButton, RequestCard } from "../../components"
+import { RequestCard, CustomModal} from "../../components"
 import { Dispatch, SetStateAction } from "react"
+import * as Yup from 'yup';
 import './index.css'
 /************************************* TYPING */ 
 interface ServiceRequestDocument {
@@ -16,7 +17,7 @@ interface Props {
 };
 /************************************* COMPONENT */ 
 const RequestContainer = ({data, setIsLoading}:Props) => {
-    console.log("### props > data", data);
+    // console.log("### props > data", data);
     if(!data){
         data = []
     }
@@ -25,7 +26,26 @@ const RequestContainer = ({data, setIsLoading}:Props) => {
             {/* Button Bar*/}
             <div className="page-group-button">
                 <h2>Requests</h2>
-                <PlusButton/>
+                <CustomModal
+                    fields = {[
+                        {name: "requestedBy", label: "requested by", type: ""},
+                        {name: "requestedService", label: "requested service", type: ""},
+                    ]}
+                    initialValues={{
+                        requestedBy: "",
+                        requestedService: "",
+                        status: "pending"
+                    }}
+                    url = {"https://gedldowmye.execute-api.ap-southeast-3.amazonaws.com/prod/servicesRequest"}
+                    navigateTo= {"request"}
+                    validationSchema={{
+                        requestedBy: Yup.string().required("This field is required"),
+                        requestedService: Yup.string().required("This field is required"),
+                        status: Yup.string().required("This field is required")
+                    }}
+                    arrayField="requestedService"
+                />
+                
             </div>
             <div className="grid-col-2">
                 {

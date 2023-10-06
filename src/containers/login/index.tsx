@@ -6,18 +6,22 @@ import { LinearProgress } from "@mui/material";
 import {CustomSnackbar} from "../../components";
 /************************************* TYPING */ 
 
+
 /************************************* COMPONENT */ 
 
 const LoginPage = () => {
   let [isLoading, setIsLoading] = useState("");
-  console.log("tokenValues", isLoading)
-  console.log("conditional", isLoading? "truez": "falsez");
+  // console.log("tokenValues", isLoading)
+  // console.log("conditional", isLoading? "truez": "falsez");
+
+  
+  
   return (
     <>
       <main className="login-main">
         {
-          isLoading == "loading" ? <LinearProgress color="secondary" /> :
-          isLoading == "error" ?
+          isLoading === "loading" ? <LinearProgress color="secondary" /> :
+          isLoading === "error" ?
           <div className="login-div">
             <CustomSnackbar severity="error"/>
             <picture className="login-picture">

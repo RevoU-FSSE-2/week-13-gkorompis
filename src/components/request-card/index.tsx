@@ -1,16 +1,9 @@
-import { DeleteButton, EditButton } from "..";
-import {useState, Dispatch, SetStateAction} from 'react';
+import { DeleteButton } from "..";
+import {Dispatch, SetStateAction} from 'react';
+import { Button } from "@mui/material";
 import axios from 'axios';
 import "./index.css"
 /************************************* TYPING */ 
-interface ServiceDocument {
-    _id: string,
-    serviceName: string,
-    serviceCode: string,
-    permission: string[],
-    createdTime: any,
-    updatedTime: any
-}
 interface ServiceRequestDocument {
     _id: string,
     requestedBy: string,
@@ -69,13 +62,13 @@ const RequestCard = ({document, setIsLoading}: Props) =>{
                 <div>
                     <h3>{_id}</h3>
                     <p>requestedBy: {requestedBy}</p>
-                    <p>requestedService: {requestedServices[0]}</p>
+                    <p>requestedService: {requestedServices ? requestedServices[0]: ""}</p>
                     <p>status: {status}</p>
                     <p>createdTime: {formattedCreatedTime}</p>
                     <p>updatedTime: {formattedUpdatedTime}</p>
                 </div>
                 <div className="placeholder-edit-button">
-                    <EditButton onClick={()=>{patchApprove(_id, setIsLoading)}}/>
+                    <Button variant="contained" size="small" color="info" onClick={()=>{patchApprove(_id, setIsLoading)}}> Approve </Button>
                     <DeleteButton onClick={()=>{deleteServiceRequest(_id, setIsLoading)}}/>
                 </div>
                 

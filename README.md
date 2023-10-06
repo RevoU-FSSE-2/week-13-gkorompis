@@ -1,46 +1,56 @@
-# Getting Started with Create React App
+# [WEEK 13 Basic CRUD MERN App](https://week12multistepform.netlify.app/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+This project serves a basic crud mern application that enables user to sign up account, sign in, adding, patching or deleting service request.
 
-In the project directory, you can run:
+## Dependencies
 
-### `npm start`
+The project relies on the following technologies and libraries:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Client-side:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+| Dependency      | Description                                 |
+|-----------------|---------------------------------------------|
+| React           | JavaScript library for building UIs.        |
+| TypeScript      | A statically typed superset of JavaScript.   |
 
-### `npm test`
+### Server-side:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **API**: The API is developed using Express.js.
+- **Database**: MongoDB is used as the database system.
 
-### `npm run build`
+## Deployment
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The project is deployed as follows:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Client-side:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- The client-side is deployed on [Netlify](https://www.netlify.com/).
 
-### `npm run eject`
+### Server-side:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- The server-side is deployed using AWS services:
+  - **API Gateway**: AWS API Gateway is used to manage and expose the API.
+  - **AWS Lambda**: AWS Lambda functions are used to host the server-side code.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To set up this project locally, follow these steps:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Clone this repository:
 
-## Learn More
+    ```bash
+        git clone week-13
+        cd week-13-gkorompis
+    ```
+2. Install required
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    ```bash
+        npm install
+    ```
+3. Starting Applicaiton
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    ```bash
+        npm start
+    ```

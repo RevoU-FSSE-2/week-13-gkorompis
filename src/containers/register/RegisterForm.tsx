@@ -3,7 +3,9 @@ import * as Yup from 'yup';
 import {Field, ErrorMessage} from 'formik';
 import {Input, Form as AntdForm} from 'antd';
 import { Button} from "@mui/material";
-import { useNavigate, NavigateFunction } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
 
 /* ------------------------------ INTERFACES */
 interface FormValues {
@@ -13,21 +15,18 @@ interface FormValues {
     role: string,
     password: string
 }
-interface NavigateButtonHandler {
-    navigate: NavigateFunction;
-    path: string
-}
 /* ------------------------------ VARIABLES */
 const initialValues:FormValues={
     name: "",
     email: "",
     username: "",
     password: "",
-    role: "basic"
+    role: "admin"
 };
 const FormItem = AntdForm.Item;
 const onClickFormik = (values:FormValues) => {
-    console.log("onClick", values);
+    // console.log("onClick", values);
+    console.log("onClick");
 };
 const validationSchema = Yup.object({
     name: Yup.string().required("Password is required"),
@@ -43,10 +42,21 @@ const fieldLabels = ["Name", "Email",  "Username", "Password", "Role"] as string
 /* ------------------------------ COMPONENT */
 const RegisterForm = () =>{
     const navigate = useNavigate();
-    const onSubmitFormik = (values:FormValues) => {
-        console.log("onSubmit", values);
+    const dispatch = useDispatch();
+    const onSubmitFormik = async(values:FormValues) => {
+        try {
+        // console.log("onSubmit", values);
+        dispatch({type: "PROFILE_LOADING"})
+        const response = await axios.post('https://gedldowmye.execute-api.ap-southeast-3.amazonaws.com/prod/users', values)
+        
+        console.log("response post user", response);
         navigate('/');
-    };
+        } catch (error){
+            console.log("error sign up", error);
+            dispatch({type: "PROFILE_ERROR"});
+        }
+        
+    }; 
     return(
         <div className="form-multi-steps">
             <Formik initialValues={initialValues} onSubmit={onSubmitFormik} onClick={onClickFormik} validationSchema={validationSchema}>
