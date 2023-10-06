@@ -12,6 +12,7 @@ const dataDummy = `[
         "username": "Gracia Korompis"
     }
 ]`
+const profile={username: ""};
 /************************************* EXPORTS */ 
 const profileAction = () =>async(dispatch:Dispatch) =>{
     try {
@@ -20,9 +21,9 @@ const profileAction = () =>async(dispatch:Dispatch) =>{
         };
         //loading
         dispatch({type: actionTypes.loading});
-        
+        profile["username"] = localStorage.getItem("username") || "..."
         //fetch data
-        dispatch({type: actionTypes.success, payload: JSON.parse(dataDummy)});
+        dispatch({type: actionTypes.success, payload: [profile]});
 
     } catch (error) {
         const errorMessage = {code: 403, message: error};

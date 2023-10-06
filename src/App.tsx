@@ -1,7 +1,7 @@
 
 import './App.css';
 import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
-import { Home, Service, Login, Register } from './pages';
+import { Home, Service, Login, Register, Request } from './pages';
 
 /************************************* TYPING */ 
 /************************************* VARIABLES */ 
@@ -19,6 +19,8 @@ const App = () => {
           <Route path="/service" element={<Service/>}/>
           <Route path="/" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
+          <Route path="/service" element={<Service/>}/>
+          <Route path="/request" element={<Request/>}/>
         </Routes>
       </BrowserRouter>
 

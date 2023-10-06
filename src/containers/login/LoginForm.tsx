@@ -13,12 +13,15 @@ interface FormValues {
     username: string,
     password: string,
 }
-interface NavigateButtonHandler {
-    navigate: NavigateFunction;
-    path: string
+interface Props {
+    setIsLoading: React.Dispatch<React.SetStateAction<string>>
 }
-interface MultiStepFormProps {
-    handlerFormValues: React.Dispatch<React.SetStateAction<FormValues>>
+interface Error {
+    message: string;
+}
+interface createSessionProps {
+    inputToken: string,
+    username: string
 }
 /* ------------------------------ VARIABLES */
 const initialValues:FormValues={
@@ -37,9 +40,10 @@ const signUpHandler = (navigate:NavigateFunction) =>{
     navigate('/register');
 };
 
-const createSession = (inputToken:string) =>{
+const createSession = ({inputToken, username}:createSessionProps) =>{
 
     localStorage.setItem('token', inputToken);
+    localStorage.setItem('username', username);
     
     console.log("session is created token: ",localStorage.getItem('token'));
 }
@@ -47,25 +51,43 @@ const fieldNames = ["username", "password"];
 const fieldLabels = ["Username", "Password"]
 const url = 'https://gedldowmye.execute-api.ap-southeast-3.amazonaws.com/prod/auth/login'
 /* ------------------------------ COMPONENT */
-const LoginForm = ({handlerFormValues}:MultiStepFormProps) =>{
-
-    let [pageIndex, setPageIndex] = useState<Number>(0);
-    
-
+const LoginForm = ({setIsLoading}:Props) =>{
     const navigate = useNavigate();
     const onSubmitFormik =async(values:FormValues) => {
-        console.log("onSubmit", values);
-        handlerFormValues(values);
-        const response = await axios.post(url, values);
-        const {data} = response;
-        console.log("response axios post", response)
-        createSession(data);
-        navigate('/home');
+        try {
+            //1. setLoading
+            setIsLoading("loading");
+            console.log("onSubmit", values);
+            //2. post sign in
+            const response = await axios.post(url, values);
+            console.log("response",response);
+            //3. get token
+            const {data} = response;
+            //4. navigate
+            console.log("response axios post", response)
+            const sessionProps = {inputToken: data, username:values.username};
+            console.log("session props", sessionProps);
+            createSession(sessionProps);
+            navigate('/home');
+        } catch (error){
+            console.log('error', error);
+            // const {message} = error as Error;
+            setIsLoading("error");
+            // alert(message)
+        }
     };
-    
     return(
-        <div className="form-multi-steps">
-            <Formik initialValues={initialValues} onSubmit={onSubmitFormik} onClick={onClickFormik} validationSchema={validationSchema}>
+        <div className="form">
+            <Formik 
+                initialValues={initialValues}
+                onSubmit={onSubmitFormik}
+                onClick={onClickFormik}
+                validationSchema={validationSchema}
+                onKeyDown={(e:any) => {
+                    if (e.key === 'Enter') {
+                    return onSubmitFormik;
+                    }
+                }}>
                 {
                     () => { return (
 

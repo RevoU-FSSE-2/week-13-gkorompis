@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { serviceAction } from '../../actions';
 import { AnyAction } from '@reduxjs/toolkit';
 import ServiceContainer from './ServiceContainer';
-import axios from 'axios';
+import { LinearProgress } from '@mui/material';
 
 /************************************* TYPING */ 
 interface Error {
@@ -41,7 +41,7 @@ const ServicePage = () => {
   return (
     <div className="service-page page">
       {loading ? (
-        <p>loading...</p>
+        <LinearProgress color="secondary" /> 
       ) : error ? (
         <p> error...</p>
       ) :  (

@@ -1,4 +1,4 @@
-import { DeleteButton, EditButton } from "..";
+import { DeleteButton } from "..";
 import "./index.css"
 /************************************* TYPING */ 
 interface ServiceDocument {
@@ -8,6 +8,14 @@ interface ServiceDocument {
     permission: string[],
     createdTime: any,
     updatedTime: any
+}
+interface ServiceRequestDocument {
+    _id: string,
+    requestedBy: string,
+    status: string,
+    requestedService: string[],
+    createdTime: string,
+    updatedTime: string
 }
 interface Props {
     document: ServiceDocument;
@@ -26,8 +34,7 @@ const ServiceCard = ({document}: Props) =>{
                     <p>service code: {serviceCode}</p>
                 </div>
                 <div className="placeholder-edit-button">
-                    <EditButton/>
-                    <DeleteButton/>
+                    {/* <DeleteButton/> */}
                 </div>
                 
             </div>

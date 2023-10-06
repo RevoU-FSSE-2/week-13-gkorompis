@@ -18,6 +18,7 @@ const homeButtonHandler = ({navigate, path}: NavigateButtonHandler) =>{
 }
 /************************************* COMPONENT */ 
 const ProfileContainer = ({data}:Props) => {
+    console.log("profile state data", data);
     console.log("### props > data", data);
     let user = {username: ""};
     if(data && data[0]){
@@ -25,7 +26,7 @@ const ProfileContainer = ({data}:Props) => {
         user = data[0]
     };
     console.log("### data exists 2")
-    const {username } = user;
+    const {username} = user;
 
     const navigate = useNavigate();
     return (
@@ -33,7 +34,7 @@ const ProfileContainer = ({data}:Props) => {
             
             {/* Button Bar*/}
             <div className="welcome-banner">
-                <div><h1>Hi, {username ? username : "..."}!</h1></div>
+                <div><h1>Hi, {username ? username : "___"}!</h1></div>
                 <div className="navigator-banner">
                      <Button variant="contained" size="large" color="info" onClick={()=>homeButtonHandler({navigate, path:"/service"})}> Explore Here </Button>
                 </div>

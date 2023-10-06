@@ -17,25 +17,24 @@
     /* background-color: aquamarine; */
     font-size: 14px;
     width: 70%;
-    
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     border-radius: 5px;
     /* background-color: rgb(94, 94, 100); */
     color: rgb(56, 52, 39);
     padding: 13px;
 }
-.service-card {
+.request-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 25vh;
+    height: 34vh;
 }
 .cards > * {
     margin: 3px;
 }
 @media only screen and (max-width: 500px) {
     .cards {
-        width: 70%;
+        width: 100%;
     }
 }

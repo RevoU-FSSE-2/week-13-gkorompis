@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: row;
 }
-.login-main {
+.login-div {
     width: 1fr;
     height: 100vh;
     /* background-color: red; */
@@ -11,14 +11,14 @@
     justify-content: center;
     align-items: center;
 }
-.login-main>* {
+.login-div>* {
     margin: 50px;
 }
 @media only screen and (max-width: 800px) {
-    .login-main {
+    .login-div {
         flex-direction: column;
     }
-    .login-main>* {
+    .login-div>* {
         margin:  5vh;
     }
 }

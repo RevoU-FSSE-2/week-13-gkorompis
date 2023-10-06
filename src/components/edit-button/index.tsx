@@ -18,9 +18,12 @@ import EditIcon from '@mui/icons-material/Edit';
 //     </Box>
 //   );
 // }
-const EditButton = () => {
+interface Props {
+  onClick: ()=> void;
+}
+const EditButton = ({onClick}:Props) => {
   return (
-    <div>
+    <div onClick={onClick}>
       <Box sx={{ '& > :not(style)': { m: 1 } }}>
         <Fab size="small" color="secondary" aria-label="edit">
           <EditIcon />

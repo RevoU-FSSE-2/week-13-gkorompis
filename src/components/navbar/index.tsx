@@ -17,7 +17,7 @@ const Navbar = () => {
             <nav className="navbar">
                 <a onClick={() => homeButtonHandler({navigate, path: "/"})}>Home</a>
                 <a onClick={() => homeButtonHandler({navigate, path: "/service"})}>Services</a>
-                <a href="#">Report</a>   
+                <a onClick={() => homeButtonHandler({navigate, path: "/request"})}>Requests</a>
                 <div id ="menuToggle" className="burger">
                     <span></span>
                     <span></span>
@@ -25,7 +25,7 @@ const Navbar = () => {
                     <div id="sidebar" className="hide">
                         <a href="#">Home</a>
                         <a href="#">Services</a>
-                        <a href="#">Report</a>
+                        <a href="#">Request</a>
                     </div>
                 </div>   
             </nav>
